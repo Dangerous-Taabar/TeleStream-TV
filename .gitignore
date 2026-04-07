@@ -1,0 +1,15 @@
+# Android Build files
+build/
+.gradle/
+*.apk
+*.aar
+
+# IDE files
+.idea/
+*.iml
+.DS_Store
+
+# Credentials (IMPORTANT: Never upload these)
+*.jks
+local.properties
+google-services.json
