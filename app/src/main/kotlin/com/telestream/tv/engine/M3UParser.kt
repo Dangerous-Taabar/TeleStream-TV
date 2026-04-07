@@ -26,6 +26,7 @@ class M3UParser {
                 // This is the URL line
                 channels.add(IPTVChannel(
                     id = java.util.UUID.randomUUID().toString(),
+                    sourceId = "M3U",
                     name = currentName,
                     url = line.trim(),
                     logo = currentLogo.ifEmpty { null },

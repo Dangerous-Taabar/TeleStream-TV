@@ -30,9 +30,11 @@ class StalkerEngine {
         return stalkerChannels.map {
             IPTVChannel(
                 id = it.id,
+                sourceId = "STALKER",
                 name = it.name,
                 url = it.cmd ?: "", // Usually a ffmpeg command or URL
-                logo = it.logo
+                logo = it.id,
+                category = it.logo
             )
         }
     }
