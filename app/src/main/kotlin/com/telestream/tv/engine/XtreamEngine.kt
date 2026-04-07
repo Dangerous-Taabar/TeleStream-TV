@@ -37,6 +37,7 @@ class XtreamEngine {
         return xtreamChannels.map {
             IPTVChannel(
                 id = it.stream_id,
+                sourceId = "XTREAM",
                 name = it.name,
                 url = "$baseUrl/live/${it.stream_id}.ts", // Standard Xtream URL format
                 logo = it.stream_icon,

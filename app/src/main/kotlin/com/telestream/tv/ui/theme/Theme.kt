@@ -5,8 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.tv.material3.*
 
-val DarkBackground = Color(0xFF121212)
-val DarkSurface = Color(0xFF1E1E1E)
 val PrimaryBlue = Color(0xFF0D47A1)
 val SecondaryBlue = Color(0xFF1976D2)
 

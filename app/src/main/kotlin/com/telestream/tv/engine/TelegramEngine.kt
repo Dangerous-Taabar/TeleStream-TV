@@ -13,10 +13,7 @@ class TelegramEngine(private val context: Context) {
     }
 
     fun initialize(onResult: (TdApi.Object) -> Unit) {
-        // In a real implementation, TDLib parameters would be set here
-        val parameters = TdApi.SetTdlibParameters().apply {
-            apiId = API_ID
-            apiHash = API_HASH
+        val parameters = TdApi.TdlibParameters().apply {
             useMessageDatabase = true
             useSecretChats = true
             useFileDatabase = true
@@ -24,10 +21,12 @@ class TelegramEngine(private val context: Context) {
             deviceModel = "Android TV"
             applicationVersion = "1.0"
             databaseDirectory = context.filesDir.absolutePath + "/tdlib"
+            apiId = API_ID
+            apiHash = API_HASH
         }
         
-        client = Client.create({ onResult(it) }, null, null)
-        client?.send(parameters) { /* Handle response */ }
+        client = Client.create({ obj: TdApi.Object -> onResult(obj) }, null, null)
+        client?.send(TdApi.SetTdlibParameters(parameters)) { /* Handle response */ }
     }
 
     fun loginWithPhone(phoneNumber: String) {
