@@ -20,13 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TeleStreamTVTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    shape = SurfaceDefaults.shape(),
-                    colors = SurfaceDefaults.colors(
-                        containerColor = MaterialTheme.colorScheme.background
-                    )
-                ) {
+                Surface(modifier = Modifier.fillMaxSize()) {
                     MainScreen()
                 }
             }
