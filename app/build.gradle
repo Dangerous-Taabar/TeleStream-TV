@@ -67,9 +67,6 @@ dependencies {
     implementation "androidx.media3:media3-common:1.2.1"
     implementation "androidx.media3:media3-exoplayer-hls:1.2.1"
     
-    // Telegram (TDLib)
-    implementation 'dev.voronine:tdlib-android:1.8.10'
-    
     // Networking
     implementation 'com.squareup.retrofit2:retrofit:2.10.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.10.0'
