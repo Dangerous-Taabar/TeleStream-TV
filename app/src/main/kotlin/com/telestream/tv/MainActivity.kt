@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
             TeleStreamTVTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    shape = ClickableSurfaceDefaults.shape(),
-                    colors = ClickableSurfaceDefaults.colors(
+                    shape = SurfaceDefaults.shape(),
+                    colors = SurfaceDefaults.colors(
                         containerColor = MaterialTheme.colorScheme.background
                     )
                 ) {

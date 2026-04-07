@@ -66,7 +66,7 @@ interface FavoriteDao {
     suspend fun deleteFavorite(id: String)
 }
 
-@Database(entities = [PortalEntity::class, FavoriteEntity::class, HistoryEntity::class], version = 1)
+@Database(entities = [PortalEntity::class, FavoriteEntity::class, HistoryEntity::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class TeleStreamDatabase : RoomDatabase() {
     abstract fun portalDao(): PortalDao
