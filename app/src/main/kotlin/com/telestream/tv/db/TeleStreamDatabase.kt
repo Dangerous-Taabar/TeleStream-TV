@@ -35,6 +35,37 @@ interface HistoryDao {
     suspend fun updateHistory(history: HistoryEntity)
 }
 
+@Entity(tableName = "favorites")
+data class FavoriteEntity(
+    @PrimaryKey val id: String,
+    val sourceId: String,
+    val name: String,
+    val url: String,
+    val logo: String? = null,
+    val type: String // "LIVE_TV", "VOD", "TELEGRAM"
+)
+
+@Dao
+interface PortalDao {
+    @Query("SELECT * FROM portals")
+    suspend fun getAllPortals(): List<PortalEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPortal(portal: PortalEntity)
+}
+
+@Dao
+interface FavoriteDao {
+    @Query("SELECT * FROM favorites")
+    suspend fun getAllFavorites(): List<FavoriteEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFavorite(favorite: FavoriteEntity)
+
+    @Query("DELETE FROM favorites WHERE id = :id")
+    suspend fun deleteFavorite(id: String)
+}
+
 @Database(entities = [PortalEntity::class, FavoriteEntity::class, HistoryEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class TeleStreamDatabase : RoomDatabase() {
