@@ -7,10 +7,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.material3.*
 import com.telestream.tv.ui.theme.TeleStreamTVTheme
+import com.telestream.tv.ui.screens.*
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalTvMaterial3Api::class)
@@ -115,7 +119,6 @@ fun HeroCard(title: String, subtitle: String, imageRes: String, onClick: () -> U
         )
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            // Background Image placeholder logic
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -127,28 +130,4 @@ fun HeroCard(title: String, subtitle: String, imageRes: String, onClick: () -> U
             }
         }
     }
-}
-
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-fun LiveTVScreen() {
-    Text("Live TV Channels will appear here")
-}
-
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-fun MoviesScreen() {
-    Text("Movies & VOD will appear here")
-}
-
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-fun TelegramScreen() {
-    Text("Telegram Channels will appear here")
-}
-
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-fun SettingsScreen() {
-    Text("App configuration")
 }
