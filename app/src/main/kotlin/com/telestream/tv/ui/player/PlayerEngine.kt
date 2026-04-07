@@ -2,17 +2,21 @@ package com.telestream.tv.ui.player
 
 import android.content.Context
 import android.net.Uri
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import androidx.annotation.OptIn
+import androidx.media3.common.MediaItem
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.hls.HlsMediaSource
+import androidx.media3.exoplayer.DefaultLoadControl
 
+@UnstableApi
 class PlayerEngine(private val context: Context) {
     private var player: ExoPlayer? = null
 
     fun initializePlayer(): ExoPlayer {
         // Optimize for Fast Zapping: Reduced buffer times for Live TV
-        val loadControl = com.google.android.exoplayer2.DefaultLoadControl.Builder()
+        val loadControl = DefaultLoadControl.Builder()
             .setBufferDurationsMs(
                 500,  // Min buffer
                 2000, // Max buffer
@@ -41,5 +45,6 @@ class PlayerEngine(private val context: Context) {
         }
     }
 
-    fun getAudioTracks() = player?.currentTracks?.groups?.filter { it.type == com.google.android.exoplayer2.C.TRACK_TYPE_AUDIO }
-    fun getSubtitleTracks() = player?.currentTracks?.groups?.filter { it.type == com.google.android.exoplayer2.C.TRACK_TYPE_TEXT }
+    fun getAudioTracks() = player?.currentTracks?.groups?.filter { it.type == androidx.media3.common.C.TRACK_TYPE_AUDIO }
+    fun getSubtitleTracks() = player?.currentTracks?.groups?.filter { it.type == androidx.media3.common.C.TRACK_TYPE_TEXT }
+}
