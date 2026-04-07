@@ -2,9 +2,17 @@ package com.telestream.tv.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val DarkBackground = Color(0xFF101010)
-val DarkSurface = Color(0xFF1C1C1C)
-val PrimaryVibrant = Color(0xFF2979FF)
-val PrimaryLight = Color(0xFF82B1FF)
-val AccentColor = Color(0xFF00E5FF)
-val TextGray = Color(0xFFB0BEC5)
+val DeepIndigo = Color(0xFF0F0C29)
+val MidnightBlue = Color(0xFF302B63)
+val DarkSlate = Color(0xFF24243E)
+
+val NeonBlue = Color(0xFF00D2FF)
+val ElectricViolet = Color(0xFF9D50BB)
+val VividMagenta = Color(0xFFF000FF)
+
+val GlassWhite = Color(0x1AFFFFFF)
+val GlassBorder = Color(0x33FFFFFF)
+
+val HomeGradient = listOf(DeepIndigo, MidnightBlue, DarkSlate)
+val CardGradient = listOf(Color(0xCC1C1C1C), Color(0xCC2D2D2D))
+val AccentGradient = listOf(NeonBlue, ElectricViolet)

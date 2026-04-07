@@ -3,15 +3,21 @@ package com.telestream.tv
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.material3.*
-import com.telestream.tv.ui.theme.TeleStreamTVTheme
+import coil.compose.AsyncImage
+import com.telestream.tv.ui.theme.*
 import com.telestream.tv.ui.screens.*
 
 class MainActivity : ComponentActivity() {
@@ -20,8 +26,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TeleStreamTVTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    MainScreen()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    shape = androidx.compose.ui.graphics.RectangleShape,
+                    colors = SurfaceDefaults.colors(
+                        containerColor = Color.Transparent
+                    )
+                ) {
+                    Box(modifier = Modifier
+                        .fillMaxSize()
+                        .background(Brush.verticalGradient(HomeGradient))) {
+                        MainScreen()
+                    }
                 }
             }
         }
@@ -34,7 +50,6 @@ fun MainScreen() {
     var selectedSection by remember { mutableStateOf<String?>(null) }
     
     if (selectedSection == null) {
-        // Hero Launcher Home Screen
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -43,9 +58,15 @@ fun MainScreen() {
             horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Welcome to TeleStream TV",
+                text = "TeleStream TV",
                 style = MaterialTheme.typography.displayMedium,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = Color.White,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Text(
+                text = "Premium IPTV & Media Hub",
+                style = MaterialTheme.typography.titleMedium,
+                color = NeonBlue,
                 modifier = Modifier.padding(bottom = 48.dp)
             )
 
@@ -55,25 +76,25 @@ fun MainScreen() {
             ) {
                 item {
                     HeroCard(
-                        title = "Live TV",
-                        subtitle = "IPTV, XTREAM, STALKER",
-                        imageRes = "livetv_hero_card",
+                        title = "Live Channels",
+                        subtitle = "Global IPTV & Stalker",
+                        imageRes = R.drawable.livetv_hero_card,
                         onClick = { selectedSection = "LIVE_TV" }
                     )
                 }
                 item {
                     HeroCard(
-                        title = "Movies & VOD",
-                        subtitle = "CLOUDSTREAM & EXTENSIONS",
-                        imageRes = "vod_hero_card",
+                        title = "Movies & Series",
+                        subtitle = "Cinema Lounge Experience",
+                        imageRes = R.drawable.vod_hero_card,
                         onClick = { selectedSection = "VOD" }
                     )
                 }
                 item {
                     HeroCard(
                         title = "Telegram TV",
-                        subtitle = "CHANNELS & MEDIA",
-                        imageRes = "telegram_hero_card",
+                        subtitle = "Cloud Media Hub",
+                        imageRes = R.drawable.telegram_hero_card,
                         onClick = { selectedSection = "TELEGRAM" }
                     )
                 }
@@ -93,32 +114,49 @@ fun MainScreen() {
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-fun HeroCard(title: String, subtitle: String, imageRes: String, onClick: () -> Unit) {
+fun HeroCard(title: String, subtitle: String, imageRes: Int, onClick: () -> Unit) {
     var isFocused by remember { mutableStateOf(false) }
-    val scale = if (isFocused) 1.1f else 1.0f
+    val scale = if (isFocused) 1.05f else 1.0f
 
     Surface(
         onClick = onClick,
         modifier = Modifier
             .width(360.dp)
-            .height(200.dp)
+            .height(210.dp)
             .onFocusChanged { isFocused = it.isFocused }
             .scale(scale),
-        shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.medium),
+        shape = ClickableSurfaceDefaults.shape(shape = MaterialTheme.shapes.large),
         colors = ClickableSurfaceDefaults.colors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            focusedContainerColor = MaterialTheme.colorScheme.primary
+            containerColor = if (isFocused) NeonBlue.copy(alpha = 0.2f) else GlassWhite,
+            focusedContainerColor = NeonBlue.copy(alpha = 0.2f)
+        ),
+        border = ClickableSurfaceDefaults.border(
+            border = Border(androidx.compose.foundation.BorderStroke(2.dp, if (isFocused) NeonBlue else GlassBorder))
         )
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
+            AsyncImage(
+                model = imageRes,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize().alpha(0.7f),
+                contentScale = ContentScale.Crop
+            )
+                modifier = Modifier.fillMaxSize().alpha(0.7f),
+                contentScale = ContentScale.Crop
+            )
+            
+            Box(modifier = Modifier.fillMaxSize().background(Brush.verticalGradient(
+                listOf(Color.Transparent, Color.Black.copy(alpha = 0.9f))
+            )))
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(24.dp),
                 verticalArrangement = Arrangement.Bottom
             ) {
-                Text(text = title, style = MaterialTheme.typography.headlineSmall)
-                Text(text = subtitle, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(text = title, style = MaterialTheme.typography.headlineSmall, color = Color.White)
+                Text(text = subtitle, style = MaterialTheme.typography.bodyMedium, color = NeonBlue)
             }
         }
     }

@@ -5,15 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.tv.material3.*
 
-val PrimaryBlue = Color(0xFF0D47A1)
-val SecondaryBlue = Color(0xFF1976D2)
-
 @OptIn(ExperimentalTvMaterial3Api::class)
 private val DarkColorScheme = darkColorScheme(
-    primary = PrimaryBlue,
-    secondary = SecondaryBlue,
-    background = DarkBackground,
-    surface = DarkSurface,
+    primary = NeonBlue,
+    secondary = ElectricViolet,
+    tertiary = VividMagenta,
+    background = DeepIndigo,
+    surface = MidnightBlue,
     onPrimary = Color.White,
     onSecondary = Color.White,
     onBackground = Color.White,
