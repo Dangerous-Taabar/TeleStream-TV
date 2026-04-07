@@ -63,7 +63,7 @@ fun MainScreen() {
                     HeroCard(
                         title = "Live TV",
                         subtitle = "IPTV, XTREAM, STALKER",
-                        imageRes = "livetv_hero_card.png",
+                        imageRes = "livetv_hero_card",
                         onClick = { selectedSection = "LIVE_TV" }
                     )
                 }
@@ -71,7 +71,7 @@ fun MainScreen() {
                     HeroCard(
                         title = "Movies & VOD",
                         subtitle = "CLOUDSTREAM & EXTENSIONS",
-                        imageRes = "vod_hero_card.png",
+                        imageRes = "vod_hero_card",
                         onClick = { selectedSection = "VOD" }
                     )
                 }
@@ -79,7 +79,7 @@ fun MainScreen() {
                     HeroCard(
                         title = "Telegram TV",
                         subtitle = "CHANNELS & MEDIA",
-                        imageRes = "telegram_hero_card.png",
+                        imageRes = "telegram_hero_card",
                         onClick = { selectedSection = "TELEGRAM" }
                     )
                 }
